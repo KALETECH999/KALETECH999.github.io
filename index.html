@@ -1,29 +1,19 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gautam Kale | Investment Analysis & FinTech</title>
+    <title>Gautam Kale | Investment Analysis & FinTech Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f8fafc; /* Tailwind gray-50 */
+        body { font-family: 'Inter', sans-serif; }
+        .project-card {
+            transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
         }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.6);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        .btn-primary {
-            transition: all 0.3s ease;
-        }
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
         }
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
@@ -34,283 +24,63 @@
         }
     </style>
 </head>
-<body class="text-gray-800">
+<body class="bg-slate-50 text-slate-800">
 
-    <!-- Header & Navigation -->
-    <header class="bg-white/80 backdrop-blur-lg sticky top-0 z-50 border-b border-gray-200">
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-10">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold text-gray-900">Gautam Kale</a>
-            <nav class="hidden md:flex space-x-8">
-                <a href="#about" class="text-gray-600 hover:text-gray-900 transition">About</a>
-                <a href="#projects" class="text-gray-600 hover:text-gray-900 transition">Projects</a>
-                <a href="#contact" class="text-gray-600 hover:text-gray-900 transition">Contact</a>
-            </nav>
-            <a href="#contact" class="hidden md:inline-block bg-gray-800 text-white font-semibold py-2 px-4 rounded-lg btn-primary">Get In Touch</a>
+            <div>
+                <h1 class="text-2xl font-bold text-slate-900">Gautam Kale</h1>
+                <p class="text-sm text-slate-600">Investment Analysis & FinTech Development</p>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a href="https://bit.ly/Gautam-kale-linkedin" target="_blank" class="text-slate-500 hover:text-blue-600 transition" aria-label="Gautam Kale's LinkedIn Profile">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                </a>
+                <a href="https://kaletech999.github.io/KALETECH999" target="_blank" class="text-slate-500 hover:text-slate-900 transition" aria-label="Gautam Kale's GitHub Profile">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.91 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                </a>
+            </div>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <main class="container mx-auto px-6 py-16 md:py-24">
-        <section class="text-center">
-            <h1 class="text-4xl md:text-6xl font-bold text-gray-900 leading-tight">Investment Analyst & FinTech Developer</h1>
-            <p class="mt-6 text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">Bridging traditional investment principles with modern technology to build data-driven financial models, automated diligence engines, and novel derivatives platforms.</p>
-            <div class="mt-8 flex justify-center gap-4">
-                <a href="#projects" class="bg-gray-800 text-white font-semibold py-3 px-6 rounded-lg btn-primary">View My Work</a>
-                <a href="https://www.linkedin.com/in/gautam-kale" target="_blank" class="bg-white text-gray-800 font-semibold py-3 px-6 rounded-lg border border-gray-300 btn-primary">Connect on LinkedIn</a>
-            </div>
-        </section>
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-12">
+        <h2 class="text-3xl font-bold text-center mb-10 text-slate-900">Signature Projects</h2>
 
-        <!-- About Section -->
-        <section id="about" class="mt-24 md:mt-32">
-            <div class="max-w-4xl mx-auto text-center">
-                <h2 class="text-3xl font-bold text-gray-900">About Me</h2>
-                <p class="mt-4 text-gray-600">
-                    I am a finance professional with deep experience in global markets operations from my time at JPMorgan Chase & Co. My passion lies at the intersection of finance and technology, where I dedicate my efforts to building institutional-grade investment models and automated systems. I've independently developed projects ranging from complex LBO models to systematic deal-sourcing engines and derivatives platforms, continuously seeking to apply cutting-edge technology to solve complex financial challenges. I am currently advancing my expertise through an Advanced Certification in Generative AI & Machine Learning from IIT Madras.
-                </p>
-            </div>
-        </section>
-
-        <!-- Projects Section -->
-        <section id="projects" class="mt-24 md:mt-32">
-            <div class="max-w-5xl mx-auto text-center">
-                <h2 class="text-3xl font-bold text-gray-900">Signature Projects</h2>
-                <p class="mt-4 text-gray-600 max-w-2xl mx-auto">These projects represent my core ability to identify a complex problem and build a unique, data-driven solution.</p>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <!-- Project Phoenix -->
+            <div class="project-card bg-white p-6 rounded-lg border border-slate-200">
+                <h3 class="text-xl font-bold mb-2">Project Phoenix: REPE LBO Model</h3>
+                <p class="text-sm text-slate-600 mb-4">An institutional-grade underwriting model for a value-add industrial property. Features a full partnership waterfall, dynamic debt scheduling, tax shield, and sensitivity analysis.</p>
+                <a href="https://kaletech999.github.io/GK_REPE/" target="_blank" class="mt-4 inline-block w-full text-center bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-700 transition">
+                    Launch Institutional Model
+                </a>
             </div>
 
-            <div class="mt-12 grid gap-12 md:gap-8 md:grid-cols-1">
-
-                <!-- Project Phoenix -->
-                <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-200">
-                    <div class="grid md:grid-cols-2 gap-8 items-center">
-                        <div>
-                            <h3 class="text-2xl font-bold text-gray-900">Project Phoenix: Institutional LBO Model</h3>
-                            <p class="mt-2 text-gray-600">An institutional-quality LBO model for a $33.5M industrial property acquisition, featuring a dynamic 5-year monthly pro forma and complex, real-world financing structures.</p>
-                             <ul class="mt-4 text-left space-y-2 text-gray-600">
-                                <li class="flex items-start"><svg class="w-5 h-5 mr-2 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span>24-month interest-only period on a 65% LTC floating-rate loan.</span></li>
-                                <li class="flex items-start"><svg class="w-5 h-5 mr-2 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span>Granular modeling of OpEx, TIs, and Leasing Commissions.</span></li>
-                                <li class="flex items-start"><svg class="w-5 h-5 mr-2 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span>Multi-tiered scenario analysis dashboard (Downside, Base, Upside).</span></li>
-                            </ul>
-                        </div>
-                        <div class="glass-card p-6 rounded-xl border">
-                            <h4 class="font-semibold text-center text-gray-700">Live Model Simulator</h4>
-                            <div class="mt-4 space-y-4">
-                                <div>
-                                    <label for="exitCap" class="block text-sm font-medium text-gray-700">Exit Cap Rate (%)</label>
-                                    <input type="number" id="exitCap" value="5.5" step="0.1" class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-gray-800 focus:border-gray-800 sm:text-sm">
-                                </div>
-                                <div>
-                                    <label for="rentGrowth" class="block text-sm font-medium text-gray-700">Annual Rent Growth (%)</label>
-                                    <input type="number" id="rentGrowth" value="3.5" step="0.1" class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-gray-800 focus:border-gray-800 sm:text-sm">
-                                </div>
-                            </div>
-                            <div class="mt-6 text-center bg-gray-100 p-4 rounded-lg">
-                                <p class="text-sm text-gray-600">Projected Returns:</p>
-                                <div class="flex justify-around mt-2">
-                                    <div>
-                                        <span id="moicOutput" class="text-2xl font-bold text-gray-900">2.4x</span>
-                                        <p class="text-xs text-gray-500">MOIC</p>
-                                    </div>
-                                    <div>
-                                        <span id="irrOutput" class="text-2xl font-bold text-gray-900">19.2%</span>
-                                        <p class="text-xs text-gray-500">IRR</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project Athena -->
-                 <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-200">
-                    <div class="grid md:grid-cols-2 gap-8 items-center">
-                        <div>
-                            <h3 class="text-2xl font-bold text-gray-900">Project Athena: Systematic PE Deal Sourcing</h3>
-                            <p class="mt-2 text-gray-600">A proprietary engine to source off-market PE targets by scraping and analyzing alternative data, moving beyond traditional screening methods.</p>
-                            <ul class="mt-4 text-left space-y-2 text-gray-600">
-                               <li class="flex items-start"><svg class="w-5 h-5 mr-2 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span>Scrapes data from sources like LinkedIn hiring velocity and zoning permits.</span></li>
-                               <li class="flex items-start"><svg class="w-5 h-5 mr-2 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span>Uses a "digital twin" simulation to model value-creation levers.</span></li>
-                               <li class="flex items-start"><svg class="w-5 h-5 mr-2 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span>Identifies unique insights unattainable via traditional LBO models.</span></li>
-                            </ul>
-                        </div>
-                        <div class="glass-card p-6 rounded-xl border text-center">
-                            <h4 class="font-semibold text-gray-700">Deal Engine Simulation</h4>
-                            <button id="athenaBtn" class="mt-4 bg-gray-800 text-white font-semibold py-3 px-6 rounded-lg btn-primary w-full">Scan for Targets</button>
-                            <div id="athenaResult" class="hidden mt-4 bg-gray-100 p-4 rounded-lg text-left animate-fade-in">
-                                <h5 class="font-bold text-gray-800">Target Identified: "Innovate SaaS Inc."</h5>
-                                <p class="text-sm text-gray-600 mt-1">B2B Vertical SaaS Provider</p>
-                                <hr class="my-2">
-                                <p class="text-xs text-gray-500">Key Signal: Hiring velocity for 'Account Executive' roles increased 50% QoQ.</p>
-                                <p class="font-semibold text-gray-800 mt-2">Thesis:</p>
-                                <p class="text-sm text-gray-600">A $5M investment in GTM strategy can capture market share and unlock a projected <span class="font-bold text-green-600">2.9x MoIC</span>.</p>
-                            </div>
-                             <div id="athenaLoader" class="hidden mt-4">
-                                <p class="text-sm text-gray-600">Scanning alternative data sources...</p>
-                                <div class="w-full bg-gray-200 rounded-full h-2.5 mt-2">
-                                  <div class="bg-gray-800 h-2.5 rounded-full animate-pulse"></div>
-                                </div>
-                             </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project NextHedge -->
-                 <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-200">
-                    <div class="grid md:grid-cols-2 gap-8 items-center">
-                        <div>
-                            <h3 class="text-2xl font-bold text-gray-900">Project NextHedge: Programmable Hedging</h3>
-                            <p class="mt-2 text-gray-600">A novel, CDS-inspired derivatives platform on a public testnet, designed to hedge against non-traditional, event-driven risks that standard instruments cannot cover.</p>
-                            <ul class="mt-4 text-left space-y-2 text-gray-600">
-                               <li class="flex items-start"><svg class="w-5 h-5 mr-2 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span>Architected with a jump-diffusion pricing framework.</span></li>
-                               <li class="flex items-start"><svg class="w-5 h-5 mr-2 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span>Deployed on a live testnet with a technical white paper.</span></li>
-                               <li class="flex items-start"><svg class="w-5 h-5 mr-2 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span>Backtested to reduce portfolio drawdown from -89% to -35% in a crash.</span></li>
-                            </ul>
-                        </div>
-                        <div class="glass-card p-6 rounded-xl border text-center">
-                            <h4 class="font-semibold text-gray-700">Risk Simulation</h4>
-                            <p class="text-xs text-gray-500 mt-1">Simulated performance of a $1M portfolio during a market shock event.</p>
-                             <div class="mt-4 space-y-3">
-                                <div class="text-left">
-                                    <p class="font-medium text-sm">Standard Portfolio</p>
-                                    <div class="w-full bg-gray-200 rounded-full h-6">
-                                      <div id="standardPortfolio" class="bg-red-500 h-6 rounded-full text-xs font-medium text-white text-center p-1 leading-none transition-all duration-500" style="width: 11%">$110k (-89%)</div>
-                                    </div>
-                                </div>
-                                <div class="text-left">
-                                    <p class="font-medium text-sm">NextHedge Protected Portfolio</p>
-                                    <div class="w-full bg-gray-200 rounded-full h-6">
-                                      <div id="hedgedPortfolio" class="bg-green-500 h-6 rounded-full text-xs font-medium text-white text-center p-1 leading-none transition-all duration-500" style="width: 100%">$1M (0%)</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <button id="hedgeBtn" class="mt-6 bg-gray-800 text-white font-semibold py-2 px-4 rounded-lg btn-primary text-sm">Simulate Crash Event</button>
-                        </div>
-                    </div>
-                </div>
-
+            <!-- Project Athena -->
+            <div class="project-card bg-white p-6 rounded-lg border border-slate-200">
+                <h3 class="text-xl font-bold mb-2">Project Athena: Deal Sourcing Engine</h3>
+                <p class="text-sm text-slate-600 mb-4">A systematic engine for sourcing off-market private equity deals. Uses alternative data (hiring velocity, permits) to identify and underwrite "PE-ready" targets before they hit the market.</p>
+                 <a href="https://KALETECH999.github.io/project_athena/" target="_blank" class="mt-4 inline-block w-full text-center bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-700 transition">
+                    Run Sourcing Simulation
+                </a>
             </div>
-        </section>
 
-        <!-- Contact Section -->
-        <section id="contact" class="mt-24 md:mt-32 text-center">
-             <div class="max-w-4xl mx-auto">
-                <h2 class="text-3xl font-bold text-gray-900">Let's Connect</h2>
-                <p class="mt-4 text-gray-600">I'm always open to discussing new projects, creative ideas, or opportunities to be part of an ambitious team. Feel free to reach out.</p>
-                <div class="mt-8">
-                     <a href="mailto:gautam.kale1999@gmail.com" class="text-xl md:text-2xl font-semibold text-gray-800 hover:text-gray-900 transition">gautam.kale1999@gmail.com</a>
-                </div>
-                <div class="mt-8 flex justify-center space-x-6">
-                    <a href="https://www.linkedin.com/in/gautam-kale" target="_blank" class="text-gray-500 hover:text-gray-800 transition" aria-label="Gautam Kale's LinkedIn Profile">
-                        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" clip-rule="evenodd"/></svg>
-                    </a>
-                    <a href="https://github.com/KALETECH999" target="_blank" class="text-gray-500 hover:text-gray-800 transition" aria-label="Gautam Kale's GitHub Profile">
-                       <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.168 6.839 9.49.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.031-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.03 1.595 1.03 2.688 0 3.848-2.338 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.001 10.001 0 0022 12c0-5.523-4.477-10-10-10z" clip-rule="evenodd"/></svg>
-                    </a>
-                </div>
+            <!-- Project NextHedge -->
+            <div class="project-card bg-white p-6 rounded-lg border border-slate-200">
+                <h3 class="text-xl font-bold mb-2">NextHedge: Programmable Hedging</h3>
+                <p class="text-sm text-slate-600 mb-4">A novel risk-transfer framework modeled on credit derivatives (CDS) to structure hedges against non-traditional, event-driven risks. The methodology and back-tested performance are documented in a technical white paper.</p>
+                <a href="https://kaletech999.github.io/KALETECH999" target="_blank" class="mt-4 inline-block w-full text-center bg-slate-700 text-white font-semibold py-2 px-4 rounded-lg hover:bg-slate-800 transition">
+                    View Project Page
+                </a>
             </div>
-        </section>
+            
+        </div>
     </main>
     
-    <!-- Footer -->
-    <footer class="bg-gray-100 border-t border-gray-200 mt-24">
-        <div class="container mx-auto px-6 py-8 text-center text-gray-500">
-            <p>&copy; <span id="currentYear"></span> Gautam Kale. All Rights Reserved.</p>
-        </div>
-    </footer>
-
-    <script>
-        document.getElementById('currentYear').textContent = new Date().getFullYear();
-
-        // Project Phoenix Simulator
-        const exitCapInput = document.getElementById('exitCap');
-        const rentGrowthInput = document.getElementById('rentGrowth');
-        const moicOutput = document.getElementById('moicOutput');
-        const irrOutput = document.getElementById('irrOutput');
-
-        // A slightly more dynamic calculation
-        function updatePhoenixReturns() {
-            const exitCap = parseFloat(exitCapInput.value) || 5.5;
-            const rentGrowth = parseFloat(rentGrowthInput.value) || 3.5;
-
-            // Base values
-            const baseMoic = 2.4;
-            const baseIrr = 19.2;
-            const baseExitCap = 5.5;
-            const baseRentGrowth = 3.5;
-
-            // Introduce more realistic sensitivity factors
-            const capRateFactor = (baseExitCap / exitCap); // Multiplicative, not additive
-            
-            const newMoic = baseMoic * capRateFactor * (1 + (rentGrowth - baseRentGrowth) * 0.05);
-            const newIrr = baseIrr * Math.pow(capRateFactor, 1.5) * (1 + (rentGrowth - baseRentGrowth) * 0.03);
-
-            moicOutput.textContent = `${newMoic.toFixed(1)}x`;
-            irrOutput.textContent = `${newIrr.toFixed(1)}%`;
-        }
-        
-        exitCapInput.addEventListener('input', updatePhoenixReturns);
-        rentGrowthInput.addEventListener('input', updatePhoenixReturns);
-        updatePhoenixReturns(); // Initial calculation
-
-        // Project Athena Simulator
-        const athenaBtn = document.getElementById('athenaBtn');
-        const athenaResult = document.getElementById('athenaResult');
-        const athenaLoader = document.getElementById('athenaLoader');
-        
-        const targets = [
-            { name: "Innovate SaaS Inc.", signal: "Hiring velocity for 'AE' roles up 50% QoQ.", moic: "2.9x" },
-            { name: "LogiChain Solutions", signal: "Recent zoning permits filed for warehouse expansion.", moic: "2.5x" },
-            { name: "HealthTech Analytics", signal: "Increased web traffic from .gov domains.", moic: "3.2x" }
-        ];
-
-        athenaBtn.addEventListener('click', () => {
-            athenaResult.classList.add('hidden');
-            athenaLoader.classList.remove('hidden');
-            athenaBtn.disabled = true;
-            athenaBtn.textContent = 'Scanning...';
-
-            setTimeout(() => {
-                const target = targets[Math.floor(Math.random() * targets.length)];
-                
-                // Update the athenaResult inner HTML with the new target's data
-                document.querySelector('#athenaResult h5').textContent = `Target Identified: "${target.name}"`;
-                document.querySelector('#athenaResult .text-xs').textContent = `Key Signal: ${target.signal}`;
-                const thesisElement = document.querySelector('#athenaResult .text-sm.text-gray-600:last-of-type');
-                thesisElement.innerHTML = `A $5M investment in GTM strategy can capture market share and unlock a projected <span class="font-bold text-green-600">${target.moic}</span>.`;
-
-
-                athenaLoader.classList.add('hidden');
-                athenaResult.classList.remove('hidden');
-                athenaBtn.disabled = false;
-                athenaBtn.textContent = 'Scan for Targets';
-            }, 2500);
-        });
-
-        // Project NextHedge Simulator
-        const hedgeBtn = document.getElementById('hedgeBtn');
-        const standardPortfolio = document.getElementById('standardPortfolio');
-        const hedgedPortfolio = document.getElementById('hedgedPortfolio');
-        let isCrashed = false;
-
-        hedgeBtn.addEventListener('click', () => {
-            if (!isCrashed) {
-                // Crash state
-                standardPortfolio.style.width = '11%';
-                standardPortfolio.textContent = '$110k (-89%)';
-                hedgedPortfolio.style.width = '65%';
-                hedgedPortfolio.textContent = '$650k (-35%)';
-                hedgeBtn.textContent = 'Reset Simulation';
-                isCrashed = true;
-            } else {
-                // Reset state
-                standardPortfolio.style.width = '100%';
-                standardPortfolio.textContent = '$1M (0%)';
-                hedgedPortfolio.style.width = '100%';
-                hedgedPortfolio.textContent = '$1M (0%)';
-                hedgeBtn.textContent = 'Simulate Crash Event';
-                isCrashed = false;
-            }
-        });
-    </script>
+    <!-- No script tag is needed as simulators are removed -->
 
 </body>
 </html>
