@@ -16,19 +16,24 @@
     <!-- Performance & Preloads -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&family=Times+New+Roman&display=swap" rel="stylesheet">
     
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- ADDED: html2pdf.js library for PDF generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" xintegrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
     
     <style>
+        :root {
+            --color-accent: #D4AF37; /* Gold accent color variable */
+        }
         body { font-family: 'Inter', sans-serif; background-color: #FFFFFF; color: #1E3A8A; }
         h1, h2, h3 { font-family: 'Playfair Display', serif; }
         .nav-link { position: relative; transition: color 0.2s ease; }
-        .nav-link::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -2px; left: 50%; transform: translateX(-50%); background-color: #D4AF37; transition: width 0.2s ease; }
+        .nav-link::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -2px; left: 50%; transform: translateX(-50%); background-color: var(--color-accent); transition: width 0.2s ease; }
         .nav-link:hover::after { width: 80%; }
-        .btn-primary { background: linear-gradient(to right, #1E3A8A, #2B6CB0); transition: transform 0.2s ease, box-shadow 0.2s ease; }
+        .btn-primary { background: linear-gradient(to right, #1E3A8A, #2B6CB0); transition: transform 0.2s ease, box-shadow 0.2s ease; cursor: pointer; }
         .btn-primary:hover, .btn-primary:focus-visible { transform: translateY(-1px); box-shadow: 0 2px 8px rgba(30, 58, 138, 0.15); }
-        .btn-secondary { transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease; border-color: #D4AF37; color: #1E3A8A; }
+        .btn-secondary { transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease; border-color: var(--color-accent); color: #1E3A8A; }
         .btn-secondary:hover, .btn-secondary:focus-visible { transform: translateY(-1px); box-shadow: 0 2px 8px rgba(0,0,0,0.1); background-color: #FFFBEB; }
         .project-card { border: 1px solid #E5E7EB; transition: transform 0.2s ease, box-shadow 0.2s ease; }
         .project-card:hover { transform: translateY(-3px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
@@ -36,8 +41,39 @@
         .reveal.visible { opacity: 1; }
         .skip-link { position: absolute; top: -40px; left: 0; background: #1E3A8A; color: white; padding: 8px; z-index: 100; transition: top 0.3s; }
         .skip-link:focus { top: 0; }
-        :focus-visible { outline: 2px solid #D4AF37; outline-offset: 2px; }
+        :focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
         @media (prefers-reduced-motion: reduce){ .reveal, .btn-primary, .btn-secondary, .project-card, .nav-link::after { transition: none; } html { scroll-behavior: auto; } }
+        
+        /* A better way to hide content meant for screen readers or PDF generation */
+        .visually-hidden {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        /* Styles for the hidden resume content for PDF generation */
+        #resume-content {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 10pt;
+            color: #000;
+        }
+        #resume-content h1, #resume-content h2, #resume-content h3 {
+             font-family: 'Inter', sans-serif;
+        }
+        .resume-section-title {
+            font-size: 0.9rem; font-weight: 700; color: #374151; text-transform: uppercase;
+            letter-spacing: 0.05em; border-bottom: 1.5px solid #e5e7eb; padding-bottom: 0.25rem; margin-bottom: 0.75rem;
+        }
+        #resume-content a { color: #1e40af; text-decoration: none; font-weight: 600; }
+        #resume-content .contact-link { font-weight: normal; }
+
+
     </style>
 </head>
 <body class="antialiased">
@@ -53,17 +89,18 @@
                 <a href="#contact" class="nav-link text-gray-600 hover:text-gray-900">Contact</a>
             </nav>
             <div class="hidden md:flex items-center">
-                 <a href="resume.html" target="_blank" rel="noopener noreferrer" class="btn-primary text-white font-semibold py-2 px-4 rounded-md text-sm">Download CV</a>
+                <button onclick="downloadPDF()" class="btn-primary text-white font-semibold py-2 px-4 rounded-md text-sm">Download CV</button>
             </div>
-            <button class="md-hidden" id="menu-button" aria-controls="mobile-menu" aria-expanded="false" aria-label="Open menu">
+            <button class="md:hidden" id="menu-button" aria-controls="mobile-menu" aria-expanded="false" aria-label="Open menu">
                 <i data-lucide="menu" class="w-5 h-5" aria-hidden="true"></i>
             </button>
-            <nav id="mobile-menu" class="hidden md:hidden flex-col space-y-3 absolute top-full left-0 w-full bg-white p-6 shadow-md">
+             <!-- Mobile Menu -->
+            <nav id="mobile-menu" class="hidden flex-col space-y-3 absolute top-full left-0 w-full bg-white p-6 shadow-md">
                 <a href="#about" class="nav-link text-gray-600 hover:text-gray-900">Profile</a>
                 <a href="#transactions" class="nav-link text-gray-600 hover:text-gray-900">Transactions</a>
                 <a href="#platforms" class="nav-link text-gray-600 hover:text-gray-900">Platforms</a>
                 <a href="#contact" class="nav-link text-gray-600 hover:text-gray-900">Contact</a>
-                <a href="resume.html" target="_blank" rel="noopener noreferrer" class="mt-2 inline-block btn-primary text-white font-semibold py-2 px-4 rounded-md text-sm">Download CV</a>
+                <button onclick="downloadPDF()" class="mt-2 text-left btn-primary text-white font-semibold py-2 px-4 rounded-md text-sm">Download CV</button>
             </nav>
         </div>
     </header>
@@ -93,14 +130,12 @@
                     <p>
                         A quantitative finance professional architecting institutional-grade systems that drive value across the investment lifecycle. My experience combines a foundation in Investment Banking Operations at JPMorgan Chase & Co. with independent development of proprietary platforms for deal sourcing, underwriting, and risk management.
                     </p>
-                    
                     <div class="mt-6 border-t border-gray-200 pt-5">
                         <h4 class="font-semibold text-gray-800 uppercase text-sm tracking-wider mb-2">Credentials</h4>
                         <p class="text-gray-600 text-sm">
                             BBA, Finance & Investment | Investment Banking Certification | Advanced Certificate, Machine Learning, Gen AI & LLMs (IIT Madras, In Progress)
                         </p>
                     </div>
-
                     <div class="mt-8">
                         <div class="flex justify-between items-baseline">
                             <h3 class="text-xl font-semibold text-gray-800">Independent Quantitative R&D</h3>
@@ -110,7 +145,6 @@
                             Led the independent development and validation of advanced financial platforms. Key projects include a prototype LBO model ($34M transaction size) projecting a 20.9% IRR, and a decentralized risk platform that mitigated 60% of portfolio drawdown in stress-test scenarios.
                         </p>
                     </div>
-
                     <div class="mt-6">
                         <div class="flex justify-between items-baseline">
                              <h3 class="text-xl font-semibold text-gray-800">JPMorgan Chase & Co.</h3>
@@ -118,13 +152,12 @@
                         </div>
                         <p class="text-base font-medium text-gray-600">Analyst, Investment Banking Operations</p>
                         <p class="mt-2 text-sm leading-relaxed">
-                           Managed the end-to-end trade lifecycle for a derivatives portfolio exceeding $5B in monthly notional value. Engineered operational improvements through Python/VBA automation, saving 800+ FTE hours annually, and reduced trade breaks by 25% through rigorous root-cause analysis.
+                            Managed the end-to-end trade lifecycle for a derivatives portfolio exceeding $5B in monthly notional value. Engineered operational improvements through Python/VBA automation, saving 800+ FTE hours annually, and reduced trade breaks by 25% through rigorous root-cause analysis.
                         </p>
                     </div>
                 </div>
             </div>
         </section>
-
         <!-- Transactions Section -->
         <section id="transactions" class="py-10 md:py-12 border-t border-gray-100 reveal">
              <div class="max-w-4xl mx-auto">
@@ -143,7 +176,6 @@
                 </ul>
             </div>
         </section>
-
         <!-- Platforms Section -->
         <section id="platforms" class="py-10 md:py-12 border-t border-gray-100 reveal">
             <div class="max-w-4xl mx-auto">
@@ -179,7 +211,7 @@
                                     <strong>Solution:</strong> Engineered a systematic sourcing engine that ingests and analyzes alternative datasets (e.g., hiring velocity, permit filings) to identify PE targets based on growth signals.<br>
                                     <strong>Impact:</strong> Increases qualified deal flow by 3x while reducing sourcing man-hours by 60% in simulations, creating a scalable, proprietary sourcing advantage.
                                 </p>
-                                 <a href="https://KALETECH999.github.io/project_athena/" target="_blank" rel="noopener noreferrer" class="inline-block mt-4 text-blue-800 font-semibold text-sm hover:underline">Launch Live Engine →</a>
+                                <a href="https://KALETECH999.github.io/project_athena/" target="_blank" rel="noopener noreferrer" class="inline-block mt-4 text-blue-800 font-semibold text-sm hover:underline">Launch Live Engine →</a>
                             </div>
                             <div class="bg-gray-50 h-full flex items-center justify-center p-4 sm:p-6 md:order-1">
                                 <img src="https://placehold.co/1374x916/1e293b/ffffff?text=Proprietary+Data+Engine" alt="Schematic of the Project Athena data engine" class="rounded-md shadow-sm" loading="lazy" width="1374" height="916">
@@ -208,7 +240,7 @@
             </div>
         </section>
         <!-- Contact Section -->
-        <section id="contact" class="py-10 md:py-12 text-center bg-gray-50 -mx-6 px-6 reveal">
+        <section id="contact" class="py-10 md:py-12 bg-gray-50 -mx-6 px-6 reveal">
             <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-6">
                 <div class="text-left">
                     <h2 class="text-3xl font-bold text-gray-900 tracking-tight">Connect</h2>
@@ -259,16 +291,120 @@
             <p class="text-xs mt-2">Disclaimer: Project results are based on simulated models and are not indicative of future performance.</p>
         </div>
     </footer>
+
+    <!-- MOVED & HIDDEN: Resume content is now here for PDF generation -->
+    <div id="resume-for-pdf" class="visually-hidden" aria-hidden="true">
+        <!-- FIX: Updated with the exact content and structure from your provided resume -->
+        <div id="resume-content" style="width: 8.5in; padding: 0.5in; background: white;">
+             <!-- Header Section -->
+            <header style="text-align: center; padding-bottom: 0.5rem; border-bottom: 1px solid #d1d5db;">
+                <h1 style="font-size: 26pt; font-weight: 700; color: #1f2937; margin:0; padding:0;">GAUTAM KALE</h1>
+                <div style="margin-top: 0.25rem; font-size: 9pt; color: #4b5563; display: flex; justify-content: center; align-items: center; gap: 0.5rem;">
+                    <a class="contact-link" href="tel:+919407177885">+91-9407177885</a>
+                    <span>&bull;</span>
+                    <a class="contact-link" href="mailto:gautam.kale1999@gmail.com">gautam.kale1999@gmail.com</a>
+                    <span>&bull;</span>
+                    <span style="font-weight:600;">India</span>
+                    <span>&bull;</span>
+                    <a href="https://www.linkedin.com/in/gautam-kale-206a81171/">LinkedIn</a>
+                    <span>&bull;</span>
+                    <a href="https://kaletech999.github.io/KALETECH999">Portfolio</a>
+                    <span>&bull;</span>
+                    <a href="https://github.com/KALETECH999">GitHub</a>
+                </div>
+            </header>
+
+            <!-- Professional Summary -->
+            <section style="margin-top: 0.75rem;">
+                <h2 class="resume-section-title">Professional Summary</h2>
+                <p style="line-height: 1.4; text-align: justify;">
+                    A quantitative finance professional with a 2.9-year foundation in Investment Banking Operations at JPMorgan Chase. Architect of proprietary platforms for institutional underwriting, risk management, and automated deal sourcing. Combines deep expertise in derivatives and trade lifecycle management with advanced skills in AI/ML and financial engineering to drive alpha and enhance operational efficiency in demanding investment environments.
+                </p>
+            </section>
+
+            <!-- Professional Experience -->
+            <section style="margin-top: 0.75rem;">
+                <h2 class="resume-section-title">Professional Experience</h2>
+                <div style="margin-bottom: 0.75rem;">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <h3 style="font-size: 11pt; font-weight: 700;">Independent Quantitative Research & Development (Portfolio)</h3>
+                        <p style="font-size: 10pt; font-weight: 600;">May 2024 – Present</p>
+                    </div>
+                    <p style="font-size: 10pt; font-style: italic; margin-top: 2px;">Founder & Quantitative Developer</p>
+                    <ul style="list-style-type: disc; padding-left: 20px; margin-top: 0.25rem; line-height: 1.45; text-align: justify;">
+                        <li style="margin-bottom: 0.25rem;"><strong>Kaletech Underwriting Suite:</strong> Architected and validated an institutional-grade underwriting platform for multifamily, office, and industrial assets, benchmarked against Argus for valuation accuracy. Engineered a dynamic, parametric waterfall model adhering to U.S. JV standards, stress-tested for deals exceeding $100M AUM, and validated on a $34M prototype transaction to project a 20.9% IRR and 2.44x MOIC. <a href="https://kaletech999.github.io/GK_REPE/">[Live Demo]</a></li>
+                        <li style="margin-bottom: 0.25rem;"><strong>NextHedge Risk Platform:</strong> Engineered a decentralized derivatives platform extending Credit Default Swap (CDS) mechanics for programmable, event-driven hedging of non-traditional tail risks. Structured synthetic, oracle-verified instruments with smart contract clearing, mitigating 60% of portfolio drawdown in back-tested stress scenarios and creating a framework for institutional alternative risk transfer. <a href="#">[Live Demo]</a></li>
+                        <li><strong>Project Athena Sourcing Engine:</strong> Developed a proprietary sourcing engine leveraging alternative data sets (e.g., hiring trends, permit filings) to systematically identify off-market PE targets. Reduced sourcing cycle time by 60% and increased identification of viable targets by 3x. <a href="https://KALETECH999.github.io/project_athena/">[Live Demo]</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <h3 style="font-size: 11pt; font-weight: 700;">JPMorgan Chase & Co.</h3>
+                        <p style="font-size: 10pt; font-weight: 600;">Aug 2021 – Apr 2024</p>
+                    </div>
+                    <p style="font-size: 10pt; font-style: italic; margin-top: 2px;">Analyst, Investment Banking Operations | Bangalore, India</p>
+                    <ul style="list-style-type: disc; padding-left: 20px; margin-top: 0.25rem; line-height: 1.45; text-align: justify;">
+                        <li style="margin-bottom: 0.25rem;">Developed Python/VBA automation scripts that reduced manual trade processing by 40%, saving over 800 FTE hours annually.</li>
+                        <li style="margin-bottom: 0.25rem;">Managed the end-to-end settlement process for a high-volume trade portfolio (>$5B notional/month), applying root-cause analysis to decrease trade breaks by 25%.</li>
+                        <li>Resolved >95% of client inquiries and escalations within SLAs, contributing to a 15% increase in measured client satisfaction. Trained 6 new analysts, reducing team ramp-up time by 50%.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Education -->
+            <section style="margin-top: 0.75rem;">
+                <h2 class="resume-section-title">Education & Certifications</h2>
+                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.1rem;">
+                    <p><strong>IIT Madras</strong> – Advanced Certificate, Machine Learning, Gen AI & LLMs for Business Applications</p>
+                    <p style="font-weight: 600;">In Progress</p>
+                </div>
+                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.1rem;">
+                    <p><strong>Imarticus Learning</strong> – Investment Banking Certification</p>
+                </div>
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <p><strong>Bangalore University (IFIM College)</strong> – Bachelor of Business Administration, Finance & Investment</p>
+                    <p style="font-weight: 600;">2020</p>
+                </div>
+            </section>
+
+            <!-- Core Competencies -->
+            <section style="margin-top: 0.75rem;">
+                <h2 class="resume-section-title">Core Competencies</h2>
+                <div style="line-height: 1.5;">
+                    <p><strong>Financial Modeling:</strong> LBO, DCF, M&A Accretion/Dilution, Waterfall Modeling, Sensitivity Analysis, Pro Forma Projections</p>
+                    <p><strong>Quantitative Analysis:</strong> Derivatives Pricing (Black-Scholes, Binomial), VaR & Stress Testing, Hedging Strategies, Backtesting</p>
+                    <p><strong>Technical Proficiencies:</strong> Python (Pandas, NumPy, Scikit-learn), VBA, Advanced Excel, SQL</p>
+                </div>
+            </section>
+        </div>
+    </div>
     
     <script src="https://unpkg.com/lucide@0.399.0/dist/umd/lucide.js" crossorigin="anonymous" defer></script>
     <script>
+        // ADDED: JavaScript function to handle PDF download
+        function downloadPDF() {
+            const element = document.getElementById('resume-content');
+            const opt = {
+              margin:       0,
+              filename:     'Gautam_Kale_Resume.pdf',
+              image:        { type: 'jpeg', quality: 0.98 },
+              html2canvas:  { scale: 2, useCORS: true },
+              jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+            };
+            html2pdf().set(opt).from(element).save();
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
             if (typeof lucide !== 'undefined') {
                 lucide.createIcons();
             }
 
-            document.getElementById('currentYear').textContent = new Date().getFullYear();
+            const currentYearEl = document.getElementById('currentYear');
+            if(currentYearEl) {
+                currentYearEl.textContent = new Date().getFullYear();
+            }
             
+            // Intersection Observer for reveal animations
             const revealElements = document.querySelectorAll('.reveal');
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -280,6 +416,7 @@
             }, { threshold: 0.1 });
             revealElements.forEach(el => observer.observe(el));
             
+            // Mobile menu toggle logic
             const menuButton = document.getElementById('menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
             
@@ -291,9 +428,7 @@
                 document.body.style.overflow = isExpanded ? '' : 'hidden';
             }
 
-            if (menuButton) {
-                menuButton.addEventListener('click', toggleMenu);
-            }
+            if (menuButton) menuButton.addEventListener('click', toggleMenu);
             
             document.querySelectorAll('#mobile-menu a').forEach(link => {
                 link.addEventListener('click', () => {
@@ -309,6 +444,7 @@
                 if (mobileMenu && !mobileMenu.classList.contains('hidden')) toggleMenu();
             });
 
+            // Contact Form Submission
             const form = document.getElementById('contact-form');
             const formStatus = document.getElementById('form-status');
 
@@ -316,32 +452,25 @@
                 event.preventDefault();
                 const data = new FormData(event.target);
                 try {
-                    const response = await fetch("https://formspree.io/f/YOUR_REAL_FORM_ID", {
-                        method: 'POST',
-                        body: data,
-                        headers: { 'Accept': 'application/json' }
+                    const response = await fetch("https://formspree.io/f/mwprpjqq", {
+                        method: 'POST', body: data, headers: { 'Accept': 'application/json' }
                     });
                     if (response.ok) {
                         formStatus.textContent = "Thank you for your message.";
                         formStatus.className = 'mt-4 text-sm text-left text-green-600';
                         form.reset();
                     } else {
-                        formStatus.textContent = "An error occurred while submitting your form.";
-                        formStatus.className = 'mt-4 text-sm text-left text-red-600';
+                        throw new Error('Form submission failed');
                     }
                 } catch (error) {
                     formStatus.textContent = "An error occurred while submitting your form.";
                     formStatus.className = 'mt-4 text-sm text-left text-red-600';
                 }
             }
-            if(form) {
-                form.addEventListener("submit", handleSubmit);
-            }
+            if(form) form.addEventListener("submit", handleSubmit);
         });
     </script>
 </body>
 </html>
-
-
 
 
