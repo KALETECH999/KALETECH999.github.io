@@ -327,6 +327,32 @@
             #about > div > div:first-child { grid-column: 1 / span 1; }
             #about > div > div:nth-child(2) { grid-column: 2 / span 2; min-width: 0; }
         }
+
+        /* Consistent profile, GitHub and CV link alignment */
+        .profile-links {
+            display:flex; align-items:center; justify-content:flex-start;
+            flex-wrap:wrap; gap:.45rem 1.15rem; margin:1.15rem 0 .15rem;
+            padding:.8rem 0 .25rem; border-top:1px solid var(--portfolio-line);
+        }
+        .profile-links a {
+            display:inline-flex; align-items:center; min-height:30px;
+            color:var(--portfolio-navy-2); font-size:.78rem; font-weight:700;
+            letter-spacing:.015em; text-decoration:none; white-space:nowrap;
+        }
+        .profile-links a:hover { color:#8b6d37; text-decoration:underline; text-underline-offset:3px; }
+        .profile-links .profile-resume-link {
+            padding:.42rem .8rem; border:1px solid var(--portfolio-gold);
+            border-radius:4px; background:var(--portfolio-navy); color:#fff;
+        }
+        .profile-links .profile-resume-link:hover { background:var(--portfolio-navy-2); color:#fff; text-decoration:none; }
+        header .header-utilities { flex-shrink:0; white-space:nowrap; }
+        header .header-profile-link {
+            display:inline-flex; align-items:center; gap:.4rem;
+            color:#e4eaf0 !important; font-size:.78rem; font-weight:700; text-decoration:none;
+        }
+        header .header-profile-link:hover { color:#fff !important; }
+        #mobile-menu .mobile-profile-link { width:fit-content; min-height:32px; padding:.2rem 0; color:var(--portfolio-navy) !important; }
+        @media (max-width:767px) { .profile-links { gap:.35rem .9rem; padding-top:.75rem; } .profile-links a { font-size:.76rem; } }
 </style>
 </head>
 <body class="antialiased">
@@ -341,8 +367,11 @@
                 <a href="#platforms" class="nav-link text-gray-600 hover:text-gray-900">Platforms</a>
                 <a href="#contact" class="nav-link text-gray-600 hover:text-gray-900">Contact</a>
             </nav>
-            <div class="hidden md:flex items-center">
-                <button onclick="downloadPDF()" class="btn-primary text-white font-semibold py-2 px-4 rounded-md text-sm">Download CV</button>
+            <div class="hidden md:flex items-center gap-4 header-utilities">
+                <a href="https://github.com/KALETECH999" target="_blank" rel="noopener noreferrer" class="header-profile-link" aria-label="Open GitHub profile">
+                    <i data-lucide="github" class="w-4 h-4" aria-hidden="true"></i><span>GitHub</span>
+                </a>
+                <button type="button" onclick="downloadPDF()" class="btn-primary text-white font-semibold py-2 px-4 rounded-md text-sm" aria-label="Download resume PDF">Download CV</button>
             </div>
             <button class="md:hidden" id="menu-button" aria-controls="mobile-menu" aria-expanded="false" aria-label="Open menu">
                 <i data-lucide="menu" class="w-5 h-5" aria-hidden="true"></i>
@@ -352,7 +381,8 @@
                 <a href="#transactions" class="nav-link text-gray-600 hover:text-gray-900">Selected Work</a>
                 <a href="#platforms" class="nav-link text-gray-600 hover:text-gray-900">Platforms</a>
                 <a href="#contact" class="nav-link text-gray-600 hover:text-gray-900">Contact</a>
-                <button onclick="downloadPDF()" class="mt-2 text-left btn-primary text-white font-semibold py-2 px-4 rounded-md text-sm">Download CV</button>
+                <a href="https://github.com/KALETECH999" target="_blank" rel="noopener noreferrer" class="header-profile-link mobile-profile-link" aria-label="Open GitHub profile">GitHub Profile</a>
+                <button type="button" onclick="downloadPDF()" class="mt-2 text-left btn-primary text-white font-semibold py-2 px-4 rounded-md text-sm">Download CV</button>
             </nav>
         </div>
     </header>
@@ -384,6 +414,13 @@
                     <p>
                         I work at the intersection of financial services, quantitative problem-solving and software engineering. During 2.6 years at JPMorgan Chase, I supported Wholesale Lending / Commercial Banking and Agency Trade Services / Investment Banking—across payoff and cash controls, syndicated-loan trade enrichment, counterparty reference data and time-critical execution. I now apply that domain knowledge to analytical and automation systems: underwriting models that structure investment decisions, deterministic controls that strengthen reconciliation, and software that turns fragmented financial workflows into reliable operating views. The objective is better decisions, tighter controls and scalable execution—not automation for its own sake.
                     </p>
+                    <nav class="profile-links" aria-label="Professional links">
+                        <a href="https://kaletech999.github.io/KALETECH999/" target="_blank" rel="noopener noreferrer">Portfolio</a>
+                        <a href="https://github.com/KALETECH999" target="_blank" rel="noopener noreferrer">GitHub Profile</a>
+                        <a href="https://driftops.web.app/" target="_blank" rel="noopener noreferrer">DriftOps Live App</a>
+                        <a href="https://www.linkedin.com/in/gautam-kale-206a81171/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                        <a href="#resume-content" class="profile-resume-link" onclick="window.downloadPDF(); return false;" aria-label="Download resume PDF">Resume PDF</a>
+                    </nav>
                     <div class="mt-6 border-t border-gray-200 pt-5">
                         <h4 class="font-semibold text-gray-800 uppercase text-sm tracking-wider mb-2">Credentials</h4>
                         <p class="text-gray-600 text-sm">
@@ -461,7 +498,7 @@
                                 <p class="mt-2 text-gray-600 text-sm">
                                     A deterministic control layer for reference-to-invoice and invoice-to-payment-to-ledger reconciliation. The Python / FastAPI core combines exact Decimal arithmetic, schema validation, stable-identifier matching, duplicate quarantine, period / currency / amount checks, persistent run and exception state, audit events and fail-closed report publication. Companion n8n orchestration adds CSV preflight, transport / HTTP failure classification, API contract verification and report-artifact checks. Project records: 53 passing core tests and 25/25 synthetic golden outcomes. Prototype—not a live production deployment.
                                 </p>
-                                <a href="https://github.com/KALETECH999" target="_blank" rel="noopener noreferrer" class="inline-block mt-4 text-blue-800 font-semibold text-sm hover:underline">View implementation on GitHub →</a>
+                                <a href="https://github.com/KALETECH999" target="_blank" rel="noopener noreferrer" class="inline-block mt-4 text-blue-800 font-semibold text-sm hover:underline">GitHub Profile →</a>
                             </div>
                             <div class="bg-gray-50 h-full flex items-center justify-center p-4 sm:p-6">
                                 <div class="w-full p-2 sm:p-4"><div class="space-y-3 w-full"><p class="text-xs font-semibold tracking-widest text-blue-800 uppercase">Control architecture</p><div class="grid grid-cols-2 gap-2 text-xs"><div class="rounded border border-gray-200 bg-white p-3"><span class="block text-gray-400">01</span><strong class="block mt-1 text-gray-800">File intake</strong><span class="block mt-1 text-gray-500">Scope &amp; schema checks</span></div><div class="rounded border border-gray-200 bg-white p-3"><span class="block text-gray-400">02</span><strong class="block mt-1 text-gray-800">Deterministic match</strong><span class="block mt-1 text-gray-500">Exact amount logic</span></div><div class="rounded border border-gray-200 bg-white p-3"><span class="block text-gray-400">03</span><strong class="block mt-1 text-gray-800">Exception control</strong><span class="block mt-1 text-gray-500">Quarantine &amp; audit trail</span></div><div class="rounded border border-gray-200 bg-white p-3"><span class="block text-gray-400">04</span><strong class="block mt-1 text-gray-800">Verified output</strong><span class="block mt-1 text-gray-500">Fail-closed CSV report</span></div></div><p class="text-xs text-gray-500">PYTHON · FASTAPI · SQL · N8N</p></div></div>
@@ -509,7 +546,7 @@
                                 <p class="mt-2 text-gray-600 text-sm">
                                     A CDS-inspired risk-transfer framework exploring parameterized structures for assessing complex portfolio exposures and evaluating tailored hedging strategies. This is a research and prototype concept—not a deployed hedging product.
                                 </p>
-                                <a href="https://github.com/KALETECH999" target="_blank" rel="noopener noreferrer" class="inline-block mt-4 text-blue-800 font-semibold text-sm hover:underline">View project work on GitHub →</a>
+                                <a href="https://github.com/KALETECH999" target="_blank" rel="noopener noreferrer" class="inline-block mt-4 text-blue-800 font-semibold text-sm hover:underline">GitHub Profile →</a>
                             </div>
                             <div class="bg-gray-50 h-full flex items-center justify-center p-4 sm:p-6 md:order-1">
                                 <div class="w-full p-2 sm:p-4"><div class="w-full space-y-3"><p class="text-xs font-semibold tracking-widest text-blue-800 uppercase">Risk design framework</p><div class="rounded border border-gray-200 bg-white p-4 space-y-3"><div class="flex justify-between items-center"><span class="text-sm text-gray-700">Exposure definition</span><span class="text-xs text-gray-400">01</span></div><div class="h-px bg-gray-200"></div><div class="flex justify-between items-center"><span class="text-sm text-gray-700">CDS-inspired structure</span><span class="text-xs text-gray-400">02</span></div><div class="h-px bg-gray-200"></div><div class="flex justify-between items-center"><span class="text-sm text-gray-700">Parameter scenarios</span><span class="text-xs text-gray-400">03</span></div><div class="h-px bg-gray-200"></div><div class="flex justify-between items-center"><span class="text-sm text-gray-700">Risk-transfer evaluation</span><span class="text-xs text-gray-400">04</span></div></div><p class="text-xs text-gray-500">RESEARCH PROTOTYPE · NOT A DEPLOYED HEDGE</p></div></div>
@@ -601,12 +638,15 @@
                     <a href="mailto:gautam.kale1999@gmail.com">gautam.kale1999@gmail.com</a>
                     <span>&bull;</span>
                     <span>India</span>
+                </div>
+                <div style="margin-top: 0.2rem; font-size: 9pt; color: #4b5563; display: flex; justify-content: center; align-items: center; gap: 0.55rem; flex-wrap: wrap;">
+                    <a href="https://kaletech999.github.io/KALETECH999/" target="_blank" rel="noopener noreferrer">Portfolio</a>
                     <span>&bull;</span>
-                    <a href="https://www.linkedin.com/in/gautam-kale-206a81171/">LinkedIn</a>
+                    <a href="https://github.com/KALETECH999" target="_blank" rel="noopener noreferrer">GitHub</a>
                     <span>&bull;</span>
-                    <a href="https://kaletech999.github.io/KALETECH999/">Portfolio</a>
+                    <a href="https://driftops.web.app/" target="_blank" rel="noopener noreferrer">DriftOps Live App</a>
                     <span>&bull;</span>
-                    <a href="https://github.com/KALETECH999">GitHub</a>
+                    <a href="https://www.linkedin.com/in/gautam-kale-206a81171/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
                 </div>
             </header>
 
