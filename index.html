@@ -8,8 +8,8 @@
     <link rel="icon" href="https://github.com/KALETECH999.png?size=64" type="image/png">
     
     <!-- SEO & Social Meta -->
-    <meta property="og:title" content="Gautam Kale — Investment Banking Operations | Financial Analysis | Automation & Operational Alpha">
-    <meta property="og:description" content="JPMorgan Chase experience across Wholesale Lending and Investment Banking, with financial modelling, automation systems and analytical projects.">
+    <meta property="og:title" content="Gautam Kale — Financial Engineering | Capital Markets | Investment Analysis & Intelligent Systems">
+    <meta property="og:description" content="Financial services experience at JPMorgan Chase, investment underwriting, deterministic financial controls and technology-led systems development.">
     <meta property="og:image" content="https://kaletech999.github.io/KALETECH999/Gemini_Generated_Image_6rooko6rooko6roo.png">
     <meta name="twitter:card" content="summary_large_image">
 
@@ -57,7 +57,266 @@
         .resume-for-pdf-wrapper {
             position: absolute; left: -9999px; top: -9999px;
         }
-    </style>
+    
+        /* Institutional financial-engineering presentation */
+        :root {
+            --portfolio-ink: #14263a;
+            --portfolio-navy: #0e243a;
+            --portfolio-navy-2: #173650;
+            --portfolio-gold: #c6a568;
+            --portfolio-paper: #f3f5f7;
+            --portfolio-line: #dce3ea;
+        }
+        html { scroll-behavior: smooth; }
+        body {
+            background: var(--portfolio-paper) !important;
+            color: var(--portfolio-ink) !important;
+        }
+        h1, h2, h3 { letter-spacing: -0.025em; }
+        header {
+            background: rgba(13, 31, 50, 0.97) !important;
+            border-bottom: 1px solid rgba(255,255,255,0.12) !important;
+            box-shadow: 0 8px 26px rgba(11,28,45,0.08);
+        }
+        header > div > a:first-child {
+            color: #f7f5ef !important;
+            letter-spacing: 0.12em;
+            font-size: 0.88rem !important;
+        }
+        header nav a, header .nav-link {
+            color: #d2dbe5 !important;
+            font-size: 0.78rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+        header nav a:hover { color: #ffffff !important; }
+        header .btn-primary {
+            background: var(--portfolio-gold) !important;
+            color: #14263a !important;
+            border: 1px solid var(--portfolio-gold);
+        }
+        #main-content {
+            max-width: 1180px !important;
+        }
+        .hero-executive {
+            position: relative;
+            max-width: none !important;
+            margin: 1.25rem -0.35rem 0 !important;
+            padding: clamp(3.25rem, 7vw, 6.2rem) clamp(1.5rem, 6vw, 5.5rem) !important;
+            text-align: left !important;
+            border-radius: 16px;
+            overflow: hidden;
+            background:
+                radial-gradient(circle at 82% 24%, rgba(198,165,104,0.14), transparent 26%),
+                linear-gradient(118deg, #0c2035 0%, #173650 58%, #1c3e5b 100%);
+            box-shadow: 0 18px 44px rgba(14,36,58,0.14);
+            border: 1px solid rgba(198,165,104,0.24);
+        }
+        .hero-executive:before {
+            content: "";
+            position: absolute;
+            inset: 0 auto 0 0;
+            width: 4px;
+            background: var(--portfolio-gold);
+        }
+        .hero-kicker {
+            margin: 0 0 1.35rem;
+            color: #d1b987;
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.22em;
+            line-height: 1.6;
+        }
+        .hero-executive h1 {
+            max-width: 850px;
+            margin: 0 !important;
+            color: #fbfaf7 !important;
+            font-size: clamp(2.6rem, 5vw, 4.4rem) !important;
+            line-height: 1.06 !important;
+            letter-spacing: -0.045em !important;
+        }
+        .hero-executive > p:not(.hero-kicker) {
+            max-width: 760px !important;
+            margin: 1.5rem 0 0 !important;
+            color: #d1dbe4 !important;
+            font-size: clamp(1rem, 1.55vw, 1.23rem) !important;
+            line-height: 1.75 !important;
+        }
+        .hero-executive .mt-8 {
+            justify-content: flex-start !important;
+            margin-top: 2.1rem !important;
+        }
+        .hero-executive .btn-primary {
+            background: var(--portfolio-gold) !important;
+            border: 1px solid var(--portfolio-gold);
+            color: #12263a !important;
+            padding: 0.8rem 1.4rem !important;
+        }
+        .hero-executive .btn-secondary {
+            background: transparent !important;
+            border: 1px solid rgba(255,255,255,0.42) !important;
+            color: #f6f6f2 !important;
+            padding: 0.8rem 1.4rem !important;
+        }
+        #about, #transactions, #platforms {
+            max-width: 1080px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-top: 4.4rem !important;
+            padding-bottom: 4.4rem !important;
+        }
+        #about > div {
+            max-width: none !important;
+            grid-template-columns: minmax(220px, 0.78fr) minmax(0, 2fr);
+            gap: 2.4rem !important;
+            align-items: start;
+        }
+        #about > div > div:first-child {
+            position: sticky;
+            top: 6.5rem;
+        }
+        #about > div > div:first-child img {
+            width: 100%;
+            aspect-ratio: 4 / 5;
+            object-fit: cover;
+            object-position: center top;
+            border-radius: 12px;
+            border: 3px solid #ffffff;
+            box-shadow: 0 14px 36px rgba(14,36,58,0.16);
+            background: #e6ebf0;
+        }
+        #about > div > div:nth-child(2) {
+            padding: clamp(1.35rem, 3vw, 2.25rem);
+            background: #ffffff;
+            border: 1px solid var(--portfolio-line);
+            border-radius: 14px;
+            box-shadow: 0 8px 28px rgba(14,36,58,0.045);
+        }
+        #about > div > div:nth-child(2) > p:first-child {
+            color: #33465a !important;
+            font-size: 1rem;
+            line-height: 1.85;
+        }
+        #about h2, #transactions h2, #platforms h2, #contact h2 {
+            color: var(--portfolio-ink) !important;
+            font-size: clamp(1.85rem, 3vw, 2.5rem) !important;
+            line-height: 1.15;
+        }
+        #about h3 {
+            color: var(--portfolio-navy-2) !important;
+            letter-spacing: -0.02em;
+        }
+        #about strong { color: #203a54; }
+        #transactions {
+            border-top: 1px solid var(--portfolio-line);
+        }
+        #transactions .grid > div {
+            border: 1px solid var(--portfolio-line) !important;
+            border-top: 3px solid var(--portfolio-gold) !important;
+            border-radius: 10px !important;
+            background: #ffffff !important;
+            padding: 1.35rem !important;
+            box-shadow: 0 8px 24px rgba(14,36,58,0.035);
+            transition: transform .2s ease, box-shadow .2s ease;
+        }
+        #transactions .grid > div:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 14px 30px rgba(14,36,58,0.08);
+        }
+        #transactions .grid > div > p:nth-child(2) {
+            color: var(--portfolio-navy) !important;
+            font-size: clamp(1.8rem, 3vw, 2.25rem) !important;
+            letter-spacing: -0.045em;
+        }
+        #platforms {
+            border-top: 1px solid var(--portfolio-line);
+        }
+        #platforms .project-card {
+            background: #ffffff;
+            border: 1px solid var(--portfolio-line) !important;
+            border-radius: 14px !important;
+            overflow: hidden;
+            box-shadow: 0 8px 28px rgba(14,36,58,0.045);
+        }
+        #platforms .project-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 16px 34px rgba(14,36,58,0.09);
+        }
+        #platforms .project-card .p-6 {
+            padding: clamp(1.3rem, 3vw, 2.1rem) !important;
+        }
+        #platforms .project-card h3 {
+            color: var(--portfolio-navy) !important;
+            font-size: 1.26rem !important;
+            line-height: 1.3;
+        }
+        #platforms .project-card p {
+            color: #4a5968 !important;
+            line-height: 1.72;
+        }
+        #platforms .project-card .bg-gray-50 {
+            background: #edf1f5 !important;
+            min-height: 300px;
+            border-left: 1px solid #e0e6ed;
+        }
+        #platforms .project-card .bg-gray-50 > div {
+            max-width: 430px;
+        }
+        #platforms .project-card .bg-white {
+            background: #ffffff !important;
+        }
+        #platforms .project-card .text-blue-600,
+        #platforms .project-card .text-blue-800 {
+            color: #8b6d37 !important;
+        }
+        #platforms .project-card a {
+            color: #8b6d37 !important;
+            font-weight: 700;
+            letter-spacing: .01em;
+        }
+        #contact {
+            max-width: none;
+            margin-top: 1rem;
+            padding: 4rem max(1.5rem, calc((100vw - 1080px)/2)) !important;
+            background: #10263d !important;
+            color: #e8edf2;
+            border-top: 3px solid var(--portfolio-gold);
+        }
+        #contact h2 { color: #ffffff !important; }
+        #contact p, #contact label { color: #d5dee7 !important; }
+        #contact a { color: #e4ca91; }
+        #contact input, #contact textarea {
+            background: #f8fafc !important;
+            color: #1c2e40 !important;
+            border: 1px solid #afbac6 !important;
+            border-radius: 6px !important;
+        }
+        #contact button {
+            background: var(--portfolio-gold) !important;
+            color: #14263a !important;
+            border: 1px solid var(--portfolio-gold);
+        }
+        footer {
+            background: #0a1b2d !important;
+            color: #aebbc9 !important;
+            border-top: 1px solid rgba(255,255,255,0.08);
+        }
+        footer p, footer a { color: #b9c4cf !important; }
+        footer p:first-child { color: #d1b987 !important; letter-spacing: .08em; text-transform: uppercase; font-size: .75rem !important; }
+        @media (max-width: 767px) {
+            .hero-executive { margin: .6rem -.35rem 0 !important; padding: 3rem 1.35rem !important; }
+            .hero-kicker { font-size: .58rem; letter-spacing: .12em; }
+            .hero-executive h1 { font-size: 2.55rem !important; }
+            #about > div { grid-template-columns: 1fr; }
+            #about > div > div:first-child { position: static; max-width: 280px; }
+            #about > div > div:nth-child(2) { padding: 1.25rem; }
+            #platforms .project-card .bg-gray-50 { min-height: 240px; border-left: 0; border-top: 1px solid #e0e6ed; }
+            #contact { padding: 3rem 1.35rem !important; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            #transactions .grid > div { transition: none; }
+        }
+</style>
 </head>
 <body class="antialiased">
     <a href="#main-content" class="skip-link">Skip to main content</a>
@@ -89,11 +348,12 @@
     <!-- Main Content -->
     <main id="main-content" class="container mx-auto px-6">
         <!-- Hero Section -->
-        <section class="py-12 md:py-16 flex flex-col justify-center text-center max-w-4xl mx-auto reveal">
+        <section class="hero-executive py-12 md:py-16 flex flex-col justify-center text-left max-w-4xl mx-auto reveal">
+            <p class="hero-kicker">CAPITAL MARKETS&nbsp;&nbsp;·&nbsp;&nbsp;INVESTMENT ANALYSIS&nbsp;&nbsp;·&nbsp;&nbsp;INTELLIGENT SYSTEMS</p>
             <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-gray-900">
                 Financial Engineering &amp; Proprietary Systems for Private Markets
             </h1>
-            <p class="mt-4 text-lg md:text-xl max-w-3xl leading-relaxed mx-auto text-gray-600">
+            <p class="mt-4 text-lg md:text-xl max-w-3xl leading-relaxed text-gray-600">
                 Investment analysis, risk architecture and intelligent workflow automation—designed to improve decision quality, strengthen financial controls and create operational alpha.
             </p>
             <div class="mt-8 flex justify-center gap-4 flex-wrap">
@@ -105,9 +365,9 @@
         <section id="about" class="py-10 md:py-12 border-t border-gray-100 reveal">
             <div class="max-w-4xl mx-auto grid md:grid-cols-3 gap-8 items-start">
                 <div class="md:col-span-1">
-                    <h2 class="text-3xl font-bold text-gray-900 tracking-tight">Profile</h2>
+                    <h2 class="text-3xl font-bold text-gray-900 tracking-tight">Professional Profile</h2>
                     <!-- SMART IMAGE LOADER: Tries PNG first, then JPG, then placeholder -->
-                    <img src="./Gemini_Generated_Image_6rooko6rooko6roo.png" alt="Gautam Kale — professional portrait" class="mt-4 rounded-md shadow-sm w-full h-auto object-cover" width="520" height="650" loading="eager" decoding="async" onerror="this.onerror=null;this.src='https://github.com/KALETECH999.png?size=520';>
+                    <img id="profile-image" src="./Gemini_Generated_Image_6rooko6rooko6roo.png?v=20261030" alt="Gautam Kale — professional portrait" class="mt-4 rounded-md shadow-sm w-full h-auto object-cover" width="520" height="650" loading="eager" decoding="async" onerror="this.onerror=null;this.src='https://github.com/KALETECH999.png?size=520';>
                 </div>
                 <div class="md:col-span-2 text-gray-700 text-base leading-relaxed">
                     <p>
@@ -148,7 +408,7 @@
         <!-- Transactions Section -->
         <section id="transactions" class="py-10 md:py-12 border-t border-gray-100 reveal">
              <div class="max-w-4xl mx-auto">
-                <h2 class="text-3xl font-bold text-gray-900 tracking-tight">Selected Financial &amp; Operating Evidence</h2>
+                <h2 class="text-3xl font-bold text-gray-900 tracking-tight">Selected Results &amp; Model Evidence</h2>
                  <p class="mt-3 text-base text-gray-600">Selected underwriting model outputs, banking quality measures and prototype validation results. Modelled returns are illustrative; prototype test counts are not production performance metrics.</p>
                 <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div class="border border-gray-200 rounded-md p-4 bg-white">
