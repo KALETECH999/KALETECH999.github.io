@@ -721,17 +721,70 @@
         document.addEventListener('DOMContentLoaded', () => {
             lucide.createIcons();
 
-            // PDF Download Function
-            window.downloadPDF = function() {
+            // PDF Download Function — temporarily render the hidden résumé inside the viewport
+            // so html2canvas can capture it. Restore the portfolio layout after saving.
+            window.downloadPDF = async function() {
+                const wrapper = document.querySelector('.resume-for-pdf-wrapper');
                 const element = document.getElementById('resume-content');
-                const opt = {
-                  margin:       0,
-                  filename:     'Gautam_Kale_Resume.pdf',
-                  image:        { type: 'jpeg', quality: 0.98 },
-                  html2canvas:  { scale: 2, useCORS: true },
-                  jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
-                };
-                html2pdf().set(opt).from(element).save();
+                if (!wrapper || !element || typeof html2pdf !== 'function') {
+                    window.alert('The résumé PDF could not be prepared. Please refresh the page and try again.');
+                    return;
+                }
+
+                const originalWrapperStyle = wrapper.getAttribute('style');
+                const originalElementStyle = element.getAttribute('style');
+
+                try {
+                    wrapper.style.position = 'fixed';
+                    wrapper.style.left = '0';
+                    wrapper.style.top = '0';
+                    wrapper.style.width = '210mm';
+                    wrapper.style.minHeight = '297mm';
+                    wrapper.style.display = 'block';
+                    wrapper.style.overflow = 'visible';
+                    wrapper.style.zIndex = '99999';
+                    wrapper.style.background = '#ffffff';
+
+                    element.style.width = '210mm';
+                    element.style.minHeight = '297mm';
+                    element.style.padding = '8mm';
+                    element.style.margin = '0';
+                    element.style.boxSizing = 'border-box';
+                    element.style.background = '#ffffff';
+
+                    // Allow the browser to lay out the printable A4 page before capture.
+                    await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+
+                    const options = {
+                        margin: 0,
+                        filename: 'Gautam_Kale_Resume_2026.pdf',
+                        image: { type: 'jpeg', quality: 0.98 },
+                        html2canvas: {
+                            scale: 2,
+                            useCORS: true,
+                            scrollX: 0,
+                            scrollY: 0,
+                            backgroundColor: '#ffffff'
+                        },
+                        jsPDF: {
+                            unit: 'mm',
+                            format: 'a4',
+                            orientation: 'portrait'
+                        },
+                        pagebreak: { mode: ['css', 'legacy'] }
+                    };
+
+                    await html2pdf().set(options).from(element).save();
+                } catch (error) {
+                    console.error('Résumé PDF generation failed:', error);
+                    window.alert('The résumé PDF could not be generated. Please try again or use the résumé link in the profile.');
+                } finally {
+                    if (originalWrapperStyle === null) wrapper.removeAttribute('style');
+                    else wrapper.setAttribute('style', originalWrapperStyle);
+
+                    if (originalElementStyle === null) element.removeAttribute('style');
+                    else element.setAttribute('style', originalElementStyle);
+                }
             }
 
             document.getElementById('currentYear').textContent = new Date().getFullYear();
